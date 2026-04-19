@@ -1,0 +1,222 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Coffee",
+    "slug": "coffee"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Desserts",
+    "slug": "desserts"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Drinks",
+    "slug": "drinks"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Cappuccino",
+    "slug": "cappuccino",
+    "description": "Classic coffee",
+    "price": "2.50",
+    "image": "products/harris-vo-JpQGEArmG0I-unsplash.jpg",
+    "available": true,
+    "created_at": "2026-04-15T10:09:34.083Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "category": 2,
+    "name": "Cheesecake",
+    "slug": "cheesecake",
+    "description": "Soft creamy cheesecake with a biscuit base",
+    "price": "3.28",
+    "image": "products/med-wael-laraiedh-hszGPnZGB3A-unsplash.jpg",
+    "available": true,
+    "created_at": "2026-04-15T10:12:20.183Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "category": 3,
+    "name": "Cola",
+    "slug": "cola",
+    "description": "Chilled refreshing cola drink",
+    "price": "1.50",
+    "image": "products/qasim-malick-i597Mg_WSPw-unsplash.jpg",
+    "available": true,
+    "created_at": "2026-04-15T10:14:27.812Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "Caffè Latte",
+    "slug": "caffe-latte",
+    "description": "A smooth and creamy espresso-based drink made with rich steamed milk and a light layer of velvety foam. Balanced, mellow, and perfect for a calm coffee experience any time of the day.",
+    "price": "3.90",
+    "image": "products/5b10c6ed8d935b4cdbc531ba6a5cbbc7.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:19:31.731Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Lavender Latte",
+    "slug": "lavender-latte",
+    "description": "A calming blend of rich espresso, steamed milk, and delicate lavender syrup. Smooth, aromatic, and slightly floral, this drink delivers a relaxing coffee experience with a modern twist.",
+    "price": "4.50",
+    "image": "products/00d14d6262a7159a7394b0260e44bd06.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:22:23.640Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "category": 1,
+    "name": "Caffè Mocha",
+    "slug": "caffe-mocha",
+    "description": "Caffè Mocha is a rich and indulgent coffee made with espresso",
+    "price": "3.50",
+    "image": "products/f14e7007806beed9f34ff9cf733e5e52.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:25:24.171Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "category": 1,
+    "name": "Caffè Americano",
+    "slug": "caffe-americano",
+    "description": "Smooth espresso diluted with hot water.",
+    "price": "2.80",
+    "image": "products/4e3dc8baad6fcfe6c8e08f8d32a1ae43.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:26:48.065Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "category": 1,
+    "name": "Caramel Macchiato",
+    "slug": "caramel-macchiato",
+    "description": "Espresso with vanilla milk and caramel drizzle.",
+    "price": "3.90",
+    "image": "products/e3ee39a113856c5aba5bdaf749c020e7.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:27:48.578Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "category": 1,
+    "name": "Flat White",
+    "slug": "flat-white",
+    "description": "Smooth espresso with velvety steamed milk.",
+    "price": "3.60",
+    "image": "products/9dec8cf4c9dc31c66b019f2df39c5477.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:29:17.145Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "category": 1,
+    "name": "Espresso",
+    "slug": "espresso",
+    "description": "Strong concentrated coffee shot.",
+    "price": "2.00",
+    "image": "products/0e48204e637cc1baeb61c15ac00c4df8.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:31:04.913Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "category": 1,
+    "name": "Cinnamon Dolce Latte",
+    "slug": "cinnamon-dolce-latte",
+    "description": "Sweet latte with cinnamon and steamed milk.",
+    "price": "4.10",
+    "image": "products/a1656d1f663790a79e42c231c8d1ff0b.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:33:03.216Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "category": 1,
+    "name": "Cortado",
+    "slug": "cortado",
+    "description": "Espresso balanced with equal warm milk.",
+    "price": "3.20",
+    "image": "products/a34bac113dfc0bb51f65e8fb85af67c2.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:34:01.564Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "category": 3,
+    "name": "Iced Passion Tango® Tea",
+    "slug": "iced-passion-tango-tea",
+    "description": "Caffeine-free iced herbal tea with fruity flavor.",
+    "price": "2.90",
+    "image": "products/d4d43cef5aedb502cd821a8d921961bb_1.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:37:11.679Z"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "category": 3,
+    "name": "Strawberry Açaí Lemonade Energy Refresher",
+    "slug": "strawberry-acai-lemonade-energy-refresher",
+    "description": "Fruity strawberry açaí drink with lemonade and light energy boost.",
+    "price": "3.80",
+    "image": "products/387827e3e249afb71c07ab52855b5ba0.jpg",
+    "available": true,
+    "created_at": "2026-04-17T14:39:21.736Z"
+  }
+}
+]

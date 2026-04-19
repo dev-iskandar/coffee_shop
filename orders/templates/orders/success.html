@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Order Success{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+
+    <!-- SUCCESS CARD -->
+    <div class="success-wrapper">
+
+      <!-- ICON -->
+      <div class="success-icon">
+        ☕
+      </div>
+
+      <!-- TITLE -->
+      <h1 class="success-title">
+        Thank You!
+      </h1>
+
+      <p class="success-subtitle">
+        Your order has been successfully placed.
+      </p>
+
+      <!-- ORDER INFO -->
+      <div class="success-card">
+
+        <div class="success-row">
+          <span>Order ID</span>
+          <strong>#{{ order.id }}</strong>
+        </div>
+
+        <div class="success-row">
+          <span>Status</span>
+          <strong>🟡 New</strong>
+        </div>
+
+        <div class="success-row">
+          <span>Total</span>
+          <strong>${{ order.total_price }}</strong>
+        </div>
+
+      </div>
+
+      <!-- ACTION BUTTON -->
+      <a href="{% url 'product_list' %}" class="btn btn-primary success-btn">
+        Back to Menu →
+      </a>
+
+    </div>
+
+  </div>
+</div>
+{% endblock %}

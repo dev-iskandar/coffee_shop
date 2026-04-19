@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cart{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+
+    <div class="section-header">
+      <span class="section-label">Your Order</span>
+      <h2 class="section-title">Shopping <span>Cart</span></h2>
+    </div>
+
+    {% if products %}
+
+    <div class="cart-list">
+
+      {% for product in products %}
+      <div class="cart-item cart-item-card"
+           data-id="{{ product.id }}"
+           data-subtotal="{{ product.total_price }}">
+
+        <!-- INFO -->
+        <div class="cart-item-info">
+          <h4>{{ product.name }}</h4>
+          <p class="text-muted">${{ product.price }}</p>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="cart-item-actions">
+
+          <!-- QUANTITY -->
+          <div class="cart-qty qty-control">
+
+            <form method="post" action="{% url 'decrease_quantity' product.id %}">
+             {% csrf_token %}
+            <button type="submit" class="btn-qty">−</button>
+        </form>
+
+        <span class="qty-value">{{ product.quantity }}</span>
+
+        <form method="post" action="{% url 'add_to_cart' product.id %}">
+         {% csrf_token %}
+        <button type="submit" class="btn-qty">+</button>
+      </form>
+
+          </div>
+
+          <!-- TOTAL -->
+          <div class="cart-price">
+            ${{ product.total_price }}
+          </div>
+
+          <!-- AJAX REMOVE BUTTON -->
+          <button
+            class="btn-remove"
+            data-id="{{ product.id }}"
+          >
+            ✕
+          </button>
+          
+
+        </div>
+
+      </div>
+      {% endfor %}
+
+    </div>
+
+    <!-- TOTAL -->
+    <div class="cart-summary">
+      <h3>
+        Total: $
+        <span class="cart-total-amount" data-value="{{ total }}">
+          {{ total }}
+        </span>
+      </h3>
+
+      <a href="{% url 'checkout' %}" class="btn btn-primary">
+        Proceed to Checkout →
+      </a>
+    </div>
+
+    {% else %}
+
+    <!-- EMPTY -->
+    <div class="empty-state">
+      <span class="empty-state-icon">🛒</span>
+      <h3>Your cart is empty</h3>
+      <p>Add some coffee to get started ☕</p>
+
+      <a href="/" class="btn btn-primary">Go to Menu</a>
+    </div>
+
+    {% endif %}
+
+  </div>
+</div>
+{% endblock %}

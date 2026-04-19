@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+
+    <div class="section-header reveal" style="text-align:center;max-width:480px;margin:0 auto 40px">
+      <span class="section-label">Almost there</span>
+      <h1 class="section-title">Complete Your <span>Order</span></h1>
+    </div>
+
+    <div class="checkout-container">
+      <div class="checkout-card">
+
+        <!-- ORDER SUMMARY -->
+        {% if cart_items %}
+        <div class="checkout-summary">
+
+          <div class="checkout-summary-title">
+            Order Summary
+          </div>
+
+          {% for item in cart_items %}
+          <div class="checkout-summary-item">
+
+            <span>
+              {{ item.product.name }} × {{ item.quantity }}
+            </span>
+
+            <!-- ✅ FIX 1: добавил $ -->
+            <span>
+              ${{ item.subtotal|floatformat:0 }}
+            </span>
+
+          </div>
+          {% endfor %}
+
+          <div class="checkout-summary-total">
+
+            <span>Total</span>
+
+            <!-- ✅ FIX 2: добавил $ -->
+            <span>
+              ${{ total|floatformat:0 }}
+            </span>
+
+          </div>
+        </div>
+        {% endif %}
+
+        <div class="divider"></div>
+
+        <!-- FORM -->
+        <form method="post" action="/checkout/" class="checkout-form" novalidate>
+          {% csrf_token %}
+
+          <div class="checkout-title">Delivery Details</div>
+          <div class="checkout-subtitle">We'll deliver straight to your door</div>
+
+          <!-- NAME -->
+          <div class="form-group">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              class="form-control"
+              placeholder="Your name"
+              required
+              autocomplete="name"
+              value="{{ form.name.value|default:'' }}"
+            >
+            <label for="name">Full Name</label>
+          </div>
+
+          <!-- PHONE -->
+          <div class="form-group">
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              class="form-control"
+              placeholder="+998 XX XXX XX XX"
+              required
+              autocomplete="tel"
+              value="{{ form.phone.value|default:'' }}"
+            >
+            <label for="phone">Phone Number</label>
+          </div>
+
+          <!-- ADDRESS -->
+          <div class="form-group">
+            <textarea
+              name="address"
+              id="address"
+              class="form-control"
+              placeholder="Delivery address"
+              required
+              autocomplete="street-address"
+            >{{ form.address.value|default:'' }}</textarea>
+            <label for="address">Delivery Address</label>
+          </div>
+
+          <!-- PAYMENT -->
+          <div class="form-group-std">
+            <label for="payment">Payment Method</label>
+            <select name="payment" id="payment" class="form-control">
+              <option value="cash">💵 Cash on Delivery</option>
+              <option value="card">💳 Card on Delivery</option>
+              <option value="payme">📱 Payme</option>
+              <option value="click">⚡ Click</option>
+            </select>
+          </div>
+
+          <!-- NOTE -->
+          <div class="form-group">
+            <textarea
+              name="note"
+              id="note"
+              class="form-control"
+              placeholder="Any special instructions..."
+              style="min-height:80px"
+            >{{ form.note.value|default:'' }}</textarea>
+            <label for="note">Order Note (optional)</label>
+          </div>
+
+          <!-- STATUS TEXT (NEW) -->
+          <!-- ✅ FIX 3: добавил для JS -->
+          <div class="form-status"></div>
+
+          <!-- SUBMIT -->
+          <button type="submit" class="btn-submit">
+            Place Order ☕
+            <!-- ✅ FIX 4: улучшил текст -->
+          </button>
+
+          <div style="text-align:center;margin-top:16px">
+            <a href="/cart/" style="font-size:13px;color:var(--text-secondary)">
+              ← Back to Cart
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // PHONE FORMAT (оставляем как есть)
+  const phoneInput = document.getElementById('phone');
+
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function() {
+      let v = this.value.replace(/\D/g, '');
+      if (v.startsWith('998')) v = '+' + v;
+      else if (v.length > 0 && !v.startsWith('+')) v = '+998' + v;
+      this.value = v;
+    });
+  }
+
+  // ✅ FIX 5: добавил статус для UX (ВАЖНО)
+  const form = document.querySelector('.checkout-form');
+  const status = document.querySelector('.form-status');
+
+  if (form && status) {
+    form.addEventListener('submit', function () {
+      status.textContent = "Processing your order ☕...";
+    });
+  }
+</script>
+{% endblock %}

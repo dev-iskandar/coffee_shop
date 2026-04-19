@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="container hero-content">
+
+    <span class="section-label reveal">Fresh Coffee Everyday</span>
+
+    <h1 class="hero-title reveal">
+      Start Your Day With <span>Perfect Coffee</span>
+    </h1>
+
+    <p class="hero-desc reveal">
+      Premium coffee beans, handcrafted drinks and cozy atmosphere — delivered to your door.
+    </p>
+
+    <div class="hero-actions reveal">
+      <a href="#products" class="btn btn-primary">Order Now</a>
+      <a href="/cart/" class="btn btn-ghost">View Cart</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PRODUCTS SECTION -->
+<section id="products" class="products-section">
+  <div class="container">
+
+    <div class="section-header reveal">
+      <span class="section-label">Our Menu</span>
+      <h2 class="section-title">Popular <span>Drinks</span></h2>
+    </div>
+
+    <div class="products-grid">
+
+      {% for product in products %}
+      <div class="product-card card-stagger">
+
+        <!-- IMAGE -->
+        <div class="product-card-img-wrapper">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" class="product-card-img" alt="{{ product.name }}">
+          {% else %}
+            <div class="product-card-no-img">☕</div>
+          {% endif %}
+        </div>
+
+        <!-- BODY -->
+        <div class="product-card-body">
+
+          <h3 class="product-card-name">
+            {{ product.name }}
+          </h3>
+
+          <p class="product-card-desc">
+            {{ product.description|default:"Freshly brewed coffee made from premium beans." }}
+          </p>
+
+          <div class="product-card-footer">
+
+            <div class="product-card-price">
+              ${{ product.price|floatformat:2 }}
+            </div>
+
+            <!-- ADD TO CART -->
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn-add-cart">
+                + Add
+              </button>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+
+    <div class="features-grid">
+
+      <div class="feature-card reveal">
+        ☕
+        <h3>Premium Beans</h3>
+        <p>Only selected high-quality coffee beans.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        🚚
+        <h3>Fast Delivery</h3>
+        <p>We deliver hot coffee within minutes.</p>
+      </div>
+
+      <div class="feature-card reveal">
+        💳
+        <h3>Easy Payment</h3>
+        <p>Cash, card, Payme & Click supported.</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Menu{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+  <div class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Freshly Brewed Daily</div>
+        <h1 class="hero-title">
+          Elevate Your<br>
+          <span class="gradient-text">Coffee Experience</span>
+        </h1>
+        <p class="hero-subtitle">
+          Handcrafted beverages and artisan bites, made with the finest ingredients sourced from around the world.
+        </p>
+        <a href="#menu" class="btn btn-primary">
+          Explore Menu
+        </a>
+      </div>
+    </section>
+
+    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,255,0.2),transparent);margin:0 0 48px"></div>
+
+    <!-- MENU -->
+    <section id="menu">
+
+      <div class="section-header reveal">
+        <span class="section-label">Our Menu</span>
+        <h2 class="section-title">Crafted for <span>Perfection</span></h2>
+      </div>
+
+      <!-- 🚀 CATEGORIES (ВОТ ОНО) -->
+      <div class="categories">
+
+        <a href="?category=all"
+           class="cat-btn {% if active_category == 'all' %}active{% endif %}">
+          All
+        </a>
+
+        {% for cat in categories %}
+          <a href="?category={{ cat.slug }}"
+             class="cat-btn {% if active_category == cat.slug %}active{% endif %}">
+            {{ cat.name }}
+          </a>
+        {% endfor %}
+
+      </div>
+
+      <!-- PRODUCTS -->
+      {% if products %}
+      <div class="products-grid">
+
+        {% for product in products %}
+        <article class="product-card card-stagger" data-id="{{ product.id }}">
+
+          <div class="product-card-img-wrapper">
+            {% if product.image %}
+              <img src="{{ product.image.url }}" class="product-card-img">
+            {% else %}
+              <div class="product-card-no-img">☕</div>
+            {% endif %}
+          </div>
+
+          <div class="product-card-body">
+
+            <h3 class="product-card-name">{{ product.name }}</h3>
+
+            <p class="product-card-desc">
+              {{ product.description }}
+            </p>
+
+            <div class="product-card-footer">
+
+              <div class="product-card-price">
+                ${{ product.price|floatformat:2 }}
+              </div>
+
+              <!-- 🚀 AJAX BUTTON -->
+              <button
+                class="btn-add-cart"
+                data-id="{{ product.id }}"
+              >
+                + Add
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+        {% endfor %}
+
+      </div>
+
+      {% else %}
+      <div class="empty-state">
+        <span class="empty-state-icon">☕</span>
+        <h3>No items yet</h3>
+      </div>
+      {% endif %}
+
+    </section>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>{% block title %}Coffee Shop{% endblock %} · ☕</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}">
+
+  {% block extra_css %}{% endblock %}
+</head>
+<body class="page-enter">
+
+  <!-- ── NAVBAR ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+
+      <!-- Logo -->
+      <a href="/" class="navbar-brand">
+        <span class="brand-icon">☕</span>
+        <span class="brand-text">Coffee<span>Shop</span></span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <ul class="navbar-nav">
+        <li>
+          <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="/orders/" class="nav-link {% if '/orders' in request.path %}active{% endif %}">
+            Orders
+          </a>
+        </li>
+        <li>
+          <a href="/cart/" class="cart-link nav-link {% if '/cart' in request.path %}active{% endif %}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            Cart
+            {% if cart_count %}
+              <span class="cart-badge" id="cart-badge">{{ cart_count }}</span>
+            {% else %}
+              <span class="cart-badge" id="cart-badge" style="opacity:0;transform:scale(0)">0</span>
+            {% endif %}
+          </a>
+        </li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button class="navbar-toggler" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="navbar-collapse">
+      <a href="/" class="nav-link">🏠 Home</a>
+      <a href="/orders/" class="nav-link">📦 Orders</a>
+      <a href="/cart/" class="nav-link">🛒 Cart {% if cart_count %}<span class="cart-badge" style="position:static;display:inline-flex;margin-left:4px">{{ cart_count }}</span>{% endif %}</a>
+    </div>
+  </nav>
+
+  <!-- ── FLASH MESSAGES ── -->
+
+  <!-- ── MAIN CONTENT ── -->
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <p>© {% now "Y" %} <strong>Coffee Shop</strong> · Crafted with ☕ and passion</p>
+    </div>
+  </footer>
+
+  <!-- ── SCRIPTS ── -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script src="{% static 'js/cart.js' %}"></script>
+  {% block extra_js %}{% endblock %}
+
+</body>
+</html>
