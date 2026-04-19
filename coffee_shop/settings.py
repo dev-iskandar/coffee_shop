@@ -21,7 +21,7 @@ STATICFILES_DIRS = [
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['coffee-shop-imk0.onrender.com',
     '.onrender.com']
