@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Category(models.Model):
@@ -25,6 +26,8 @@ class Product(models.Model):
     image_name = models.CharField(max_length=150, default='no-image.jpg')
     available = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    image = CloudinaryField('image')
 
     def __str__(self):
         return self.name
