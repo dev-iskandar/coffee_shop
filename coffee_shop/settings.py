@@ -2,10 +2,6 @@ from dotenv import load_dotenv
 import dj_database_url
 import os
 from pathlib import Path
-from django.db import connection
-
-print("DB NAME:", connection.settings_dict['NAME'])
-print("DB ENGINE:", connection.settings_dict['ENGINE'])
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
